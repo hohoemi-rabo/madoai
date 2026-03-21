@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ChatInput } from "./ChatInput";
 import { ChatMessages, type Message } from "./ChatMessages";
-import { SuggestChips } from "./SuggestChips";
+import { SuggestChips, type Tag } from "./SuggestChips";
 import { Sparkles } from "lucide-react";
 
 function getSessionId(): string {
@@ -38,12 +38,20 @@ export function ChatContainer() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
   const [pendingPrompt, setPendingPrompt] = useState("");
+  const [tags, setTags] = useState<Tag[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const sessionIdRef = useRef("");
 
   useEffect(() => {
     sessionIdRef.current = getSessionId();
     setMessages(loadHistory());
+
+    fetch("/api/ai/tags")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.tags) setTags(data.tags);
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -202,7 +210,7 @@ export function ChatContainer() {
             />
 
             {/* サジェストチップ */}
-            <SuggestChips onSelect={handleChipSelect} disabled={isStreaming} />
+            <SuggestChips tags={tags} onSelect={handleChipSelect} disabled={isStreaming} />
           </div>
         </div>
       ) : (
@@ -218,7 +226,7 @@ export function ChatContainer() {
           <div className="border-t border-[var(--border)] bg-[var(--background)] px-4 py-3 pb-[env(safe-area-inset-bottom,0px)]">
             <div className="max-w-2xl mx-auto space-y-3">
               <div className="hidden md:block">
-                <SuggestChips onSelect={handleChipSelect} disabled={isStreaming} />
+                <SuggestChips tags={tags} onSelect={handleChipSelect} disabled={isStreaming} />
               </div>
               <ChatInput
                 onSend={sendMessage}
