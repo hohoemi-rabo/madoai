@@ -16,13 +16,13 @@ const suggestions = [
 
 export function SuggestChips({ onSelect, disabled }: SuggestChipsProps) {
   return (
-    <div className="flex flex-wrap gap-2 justify-center">
+    <div className="flex gap-2 justify-center overflow-x-auto scrollbar-hide md:flex-wrap md:overflow-visible">
       {suggestions.map((s) => (
         <button
           key={s.label}
           onClick={() => onSelect(s.prompt)}
           disabled={disabled}
-          className="flex items-center gap-2 px-4 py-2.5 bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius-xl)] text-sm text-white/80 hover:bg-white/10 hover:border-white/20 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 px-4 py-2.5 bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius-xl)] text-sm text-white/80 hover:bg-white/10 hover:border-white/20 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
         >
           <s.icon className="w-4 h-4 text-[var(--text-muted)]" />
           <span>{s.label}</span>

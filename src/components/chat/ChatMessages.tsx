@@ -32,22 +32,22 @@ export function ChatMessages({ messages, isStreaming }: ChatMessagesProps) {
       {messages.map((msg, i) => (
         <div key={i} className="flex gap-3 items-start">
           <div
-            className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5 ${
+            className={`flex-shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center mt-0.5 ${
               msg.role === "user"
                 ? "bg-blue-600/20"
                 : "bg-white/10"
             }`}
           >
             {msg.role === "user" ? (
-              <User className="w-4 h-4 text-blue-400" />
+              <User className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-400" />
             ) : (
-              <Bot className="w-4 h-4 text-white/70" />
+              <Bot className="w-3.5 h-3.5 md:w-4 md:h-4 text-white/70" />
             )}
           </div>
 
           <div className="flex-1 min-w-0">
             <div
-              className={`text-[15px] leading-7 whitespace-pre-wrap ${
+              className={`text-sm md:text-[15px] leading-6 md:leading-7 whitespace-pre-wrap ${
                 msg.role === "user" ? "text-white" : "text-white/90"
               }`}
             >

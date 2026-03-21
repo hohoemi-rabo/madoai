@@ -181,12 +181,12 @@ export function ChatContainer() {
 
       {!hasMessages ? (
         /* 初期状態 */
-        <div className="flex-1 flex flex-col items-center justify-center px-4 -mt-16">
-          <div className="w-full max-w-2xl space-y-8">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 -mt-8 md:-mt-16">
+          <div className="w-full max-w-2xl space-y-6 md:space-y-8">
             {/* 挨拶 */}
             <div className="space-y-2">
-              <h1 className="text-3xl font-semibold text-white/90 flex items-center gap-3">
-                <Sparkles className="w-8 h-8 text-blue-400" />
+              <h1 className="text-2xl md:text-3xl font-semibold text-white/90 flex items-center gap-3">
+                <Sparkles className="w-7 h-7 md:w-8 md:h-8 text-blue-400" />
                 何から始めますか？
               </h1>
               <p className="text-[var(--text-muted)] text-base pl-11">
@@ -215,9 +215,11 @@ export function ChatContainer() {
           </div>
 
           {/* 下部固定エリア */}
-          <div className="border-t border-[var(--border)] bg-[var(--background)] px-4 py-3">
+          <div className="border-t border-[var(--border)] bg-[var(--background)] px-4 py-3 pb-[env(safe-area-inset-bottom,0px)]">
             <div className="max-w-2xl mx-auto space-y-3">
-              <SuggestChips onSelect={handleChipSelect} disabled={isStreaming} />
+              <div className="hidden md:block">
+                <SuggestChips onSelect={handleChipSelect} disabled={isStreaming} />
+              </div>
               <ChatInput
                 onSend={sendMessage}
                 disabled={isStreaming}
