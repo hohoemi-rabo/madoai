@@ -42,7 +42,7 @@ export function ChatInput({ onSend, disabled, initialValue = "" }: ChatInputProp
 
   return (
     <div className="relative w-full">
-      <div className="flex items-end gap-2 bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius-xl)] px-4 py-3 focus-within:border-white/30 transition-colors">
+      <div className="flex items-center gap-2 bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius-xl)] px-4 py-3 focus-within:border-white/30 transition-colors">
         <textarea
           ref={textareaRef}
           value={value}
