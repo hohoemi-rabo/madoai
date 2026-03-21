@@ -39,6 +39,9 @@ yarn-error.log*
 # mcp
 .mcp.json
 
+# scraping output
+scripts/output/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
