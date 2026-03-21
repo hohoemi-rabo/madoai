@@ -1,6 +1,9 @@
 ---
 description: Next.js App Router / React / Tailwind CSS のフロントエンドルール
-globs: src/**/*.tsx, src/**/*.ts, src/**/*.css
+paths:
+  - src/**/*.tsx
+  - src/**/*.ts
+  - src/**/*.css
 ---
 
 # フロントエンドルール

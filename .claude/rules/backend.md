@@ -1,6 +1,8 @@
 ---
 description: Supabase / API / データベース関連のバックエンドルール
-globs: src/app/api/**/*.ts, src/lib/**/*.ts, supabase/**/*
+paths:
+  - src/app/api/**/*.ts
+  - src/lib/**/*.ts
 ---
 
 # バックエンドルール

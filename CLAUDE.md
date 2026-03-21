@@ -46,7 +46,9 @@ npm run lint       # Run ESLint
 
 | ルールファイル | 適用対象 | 内容 |
 |---|---|---|
-| `frontend.md` | `src/**/*.tsx,ts,css` | Next.js App Router / Tailwind CSS |
+| `frontend.md` | `src/**/*.tsx, ts, css` | Next.js App Router / Tailwind CSS |
 | `backend.md` | `src/app/api/**`, `src/lib/**` | Supabase / API設計 |
 | `scraping.md` | `scripts/**/*.py` | スクレイピング・データ投入 |
 | `docs.md` | `docs/**/*.md` | チケットTodo管理 |
+
+※ルールファイルのfrontmatterは `paths` 属性（配列形式）を使用する。

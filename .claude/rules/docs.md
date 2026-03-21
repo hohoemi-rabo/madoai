@@ -1,6 +1,7 @@
 ---
 description: チケット・ドキュメント管理ルール
-globs: docs/**/*.md
+paths:
+  - docs/**/*.md
 ---
 
 # チケット管理ルール

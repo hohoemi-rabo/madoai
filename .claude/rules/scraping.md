@@ -1,6 +1,7 @@
 ---
 description: Pythonスクレイピング・データ投入スクリプトのルール
-globs: scripts/**/*.py
+paths:
+  - scripts/**/*.py
 ---
 
 # スクレイピングルール
