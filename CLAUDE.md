@@ -26,7 +26,15 @@ npm run lint       # Run ESLint
 ## Architecture
 
 - `src/app/` — App Router pages and layouts
+- `scripts/scraper/` — Python scraping & import scripts
 - Path alias: `@/*` → `./src/*`
+
+## Supabase
+
+- **Project**: madoai (ID: `szuakyhpdczkftkdepiq`)
+- **Region**: ap-northeast-1
+- **Organization**: masa-portfolio (`xgayodyuiwtftioftjvb`)
+- **game-scope** project is for another project — do NOT use it
 
 ## Key Conventions
 
@@ -40,4 +48,5 @@ npm run lint       # Run ESLint
 |---|---|---|
 | `frontend.md` | `src/**/*.tsx,ts,css` | Next.js App Router / Tailwind CSS |
 | `backend.md` | `src/app/api/**`, `src/lib/**` | Supabase / API設計 |
+| `scraping.md` | `scripts/**/*.py` | スクレイピング・データ投入 |
 | `docs.md` | `docs/**/*.md` | チケットTodo管理 |
