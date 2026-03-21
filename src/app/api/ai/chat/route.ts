@@ -96,6 +96,26 @@ export async function POST(request: Request) {
 
     const pages = matchedPages || [];
 
+    // 3.5 検索ヒットなし時のフォールバック
+    if (pages.length === 0) {
+      const noHitStream = new ReadableStream({
+        start(controller) {
+          const msg =
+            "すみません、その情報はまだ私のデータにないんです。飯田市の公式サイト（https://www.city.iida.lg.jp）で直接お探しいただくか、市役所（0265-22-4511）にお電話でお問い合わせください。";
+          controller.enqueue(encoder.encode(sseEvent("text", msg)));
+          controller.enqueue(encoder.encode(sseEvent("done", "")));
+          controller.close();
+        },
+      });
+      return new Response(noHitStream, {
+        headers: {
+          "Content-Type": "text/event-stream",
+          "Cache-Control": "no-cache",
+          Connection: "keep-alive",
+        },
+      });
+    }
+
     // 4. システムプロンプト構築
     const systemPrompt = buildSystemPrompt(pages);
 
