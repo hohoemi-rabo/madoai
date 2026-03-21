@@ -21,11 +21,16 @@ npm run lint       # Run ESLint
 - **React 19** / **TypeScript 5**
 - **Tailwind CSS 3.4** (intentionally downgraded from v4)
 - **ESLint v9** flat config (`next/core-web-vitals`, `next/typescript`)
-- **Supabase** via MCP integration
+- **Supabase** — DB / Auth / RPC
+- **Google Gemini** — gemini-3.1-flash-lite-preview (chat), gemini-embedding-001 (search)
+- **Lucide React** — アイコン（絵文字不使用）
 
 ## Architecture
 
 - `src/app/` — App Router pages and layouts
+- `src/app/api/ai/` — AI関連APIエンドポイント（chat, tags）
+- `src/components/chat/` — チャットUIコンポーネント（Client Components）
+- `src/lib/` — Supabaseクライアント、システムプロンプト
 - `scripts/scraper/` — Python scraping & import scripts
 - Path alias: `@/*` → `./src/*`
 
@@ -39,6 +44,8 @@ npm run lint       # Run ESLint
 ## Key Conventions
 
 - All output to the user must be in Japanese
+- ダークテーマUI（背景 #131314）
+- デザイントークンは globals.css の CSS custom properties を使用
 
 ## Rules（自動適用）
 

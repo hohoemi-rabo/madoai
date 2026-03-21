@@ -18,9 +18,15 @@ paths:
 ## API設計
 
 - Route Handlerは `src/app/api/` 配下に配置
-- ストリーミングAPIは Edge Runtime + SSE（Server-Sent Events）
-- AIモデル: Google Gemini 3.1 Flash-Lite Preview
+- チャットAPIは Node.js Runtime + SSE（Edge Runtimeはライブラリ互換性の問題で不使用）
+- AIモデル: gemini-3.1-flash-lite-preview（チャット）
 - Embedding: gemini-embedding-001（768次元、taskType指定必須）
+- SDKs: `@google/genai`（Gemini）、`@supabase/supabase-js`（Supabase）
+
+## 実装済みAPIエンドポイント
+
+- `POST /api/ai/chat` — SSEストリーミングチャット（Embedding検索→Gemini回答）
+- `GET /api/ai/tags` — プロンプトタグ一覧（municipality_idフィルタ対応）
 
 ## データベーステーブル
 

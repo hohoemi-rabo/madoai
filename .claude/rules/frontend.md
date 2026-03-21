@@ -11,8 +11,20 @@ paths:
 ## Tailwind CSS
 
 - Tailwind CSS v3 構文を使用（v4ではない — 意図的にダウングレード済み）
-- テーマ: CSS custom properties（`--background`, `--foreground`）
+- ダークテーマ固定（背景 `--background: #131314`）
+- デザイントークン: `--surface`, `--border`, `--text-muted`, `--radius-*` を globals.css で定義
 - Fonts: Geist Sans/Mono（`next/font/google`、CSS変数で適用）
+- アイコン: Lucide React（絵文字不使用）
+
+## コンポーネント構成
+
+- `src/components/chat/` — チャットUI（全て Client Component）
+  - `ChatContainer` — 状態管理・SSE処理の統括
+  - `ChatInput` — 入力欄 + 送信ボタン
+  - `ChatMessages` — 会話表示
+  - `SuggestChips` — サジェストチップ（DBから取得）
+  - `SourceCard` — 参照元・問い合わせカード
+  - `Header` — ヘッダー（Server Component）
 
 ## Next.js App Router ファイル規約
 
