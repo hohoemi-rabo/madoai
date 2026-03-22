@@ -21,12 +21,27 @@ paths:
 - チャットAPIは Node.js Runtime + SSE（Edge Runtimeはライブラリ互換性の問題で不使用）
 - AIモデル: gemini-3.1-flash-lite-preview（チャット）
 - Embedding: gemini-embedding-001（768次元、taskType指定必須）
+- Embedding共通関数: `src/lib/embedding.ts`（RETRIEVAL_DOCUMENT / QUESTION_ANSWERING）
 - SDKs: `@google/genai`（Gemini）、`@supabase/supabase-js`（Supabase）
 
 ## 実装済みAPIエンドポイント
 
-- `POST /api/ai/chat` — SSEストリーミングチャット（Embedding検索→Gemini回答）
-- `GET /api/ai/tags` — プロンプトタグ一覧（municipality_idフィルタ対応）
+### 公開API（`/api/ai/`）
+- `POST /api/ai/chat` — SSEストリーミングチャット
+- `GET /api/ai/tags` — プロンプトタグ一覧
+- `GET /api/ai/municipalities` — 自治体一覧
+
+### 管理API（`/api/admin/`）
+- `GET|POST /api/admin/knowledge` — ナレッジ一覧・作成
+- `GET|PATCH /api/admin/knowledge/[id]` — ナレッジ詳細・更新（Embedding自動再生成）
+- `POST /api/admin/knowledge/import` — JSONインポート
+- `POST /api/admin/knowledge/embeddings` — Embedding一括生成
+- `GET|POST /api/admin/municipalities` — 自治体一覧・作成
+- `PATCH /api/admin/municipalities/[id]` — 自治体更新
+- `GET|POST /api/admin/tags` — タグ一覧・作成
+- `PATCH|DELETE /api/admin/tags/[id]` — タグ更新・削除
+- `GET /api/admin/analytics` — 利用状況
+- `PATCH /api/admin/analytics/limits` — 制限値変更
 
 ## データベーステーブル
 

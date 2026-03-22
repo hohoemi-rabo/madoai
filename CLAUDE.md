@@ -28,9 +28,13 @@ npm run lint       # Run ESLint
 ## Architecture
 
 - `src/app/` — App Router pages and layouts
-- `src/app/api/ai/` — AI関連APIエンドポイント（chat, tags）
+- `src/app/api/ai/` — AI関連APIエンドポイント（chat, tags, municipalities）
+- `src/app/api/admin/` — 管理用APIエンドポイント（knowledge, municipalities, tags, analytics）
+- `src/app/admin/` — 管理画面ページ（knowledge, municipalities, tags, analytics）
+- `src/app/about/` — Aboutページ（免責事項・利用規約）
 - `src/components/chat/` — チャットUIコンポーネント（Client Components）
-- `src/lib/` — Supabaseクライアント、システムプロンプト
+- `src/components/admin/` — 管理画面UIコンポーネント
+- `src/lib/` — Supabaseクライアント、システムプロンプト、Embedding共通関数
 - `scripts/scraper/` — Python scraping & import scripts
 - Path alias: `@/*` → `./src/*`
 

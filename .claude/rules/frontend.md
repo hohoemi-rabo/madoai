@@ -18,13 +18,20 @@ paths:
 
 ## コンポーネント構成
 
-- `src/components/chat/` — チャットUI（全て Client Component）
-  - `ChatContainer` — 状態管理・SSE処理の統括
-  - `ChatInput` — 入力欄 + 送信ボタン
-  - `ChatMessages` — 会話表示
-  - `SuggestChips` — サジェストチップ（DBから取得）
-  - `SourceCard` — 参照元・問い合わせカード
-  - `Header` — ヘッダー（Server Component）
+- `src/components/chat/` — チャットUI
+  - `ChatContainer` — 状態管理・SSE処理の統括（Client）
+  - `ChatInput` — 入力欄 + 送信ボタン（Client）
+  - `ChatMessages` — 会話表示（Client）
+  - `SuggestChips` — サジェストチップ、DBから取得（Client）
+  - `SourceCard` — 参照元・問い合わせカード（Client）
+  - `Header` — ヘッダー + ナビゲーション（Server）
+- `src/components/admin/` — 管理画面UI
+  - `AdminSidebar` — サイドバーナビゲーション（Client）
+  - `KnowledgeEditForm` — ナレッジ編集フォーム（Client）
+  - `MunicipalityForm` — 自治体追加/編集フォーム（Client）
+  - `TagForm` — タグ追加/編集フォーム（Client）
+  - `ImportButton` — JSONインポートボタン（Client）
+  - `EmbeddingButton` — Embedding一括生成ボタン（Client）
 
 ## Next.js App Router ファイル規約
 
