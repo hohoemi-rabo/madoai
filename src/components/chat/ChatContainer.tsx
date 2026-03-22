@@ -127,7 +127,10 @@ export function ChatContainer() {
                 const updated = [...prev];
                 const last = updated[updated.length - 1];
                 if (last.role === "assistant") {
-                  last.content += event.content;
+                  updated[updated.length - 1] = {
+                    ...last,
+                    content: last.content + event.content,
+                  };
                 }
                 return updated;
               });
@@ -140,8 +143,11 @@ export function ChatContainer() {
                 const updated = [...prev];
                 const last = updated[updated.length - 1];
                 if (last.role === "assistant") {
-                  last.sources = sources;
-                  last.spots = spots;
+                  updated[updated.length - 1] = {
+                    ...last,
+                    sources,
+                    spots,
+                  };
                 }
                 return updated;
               });
@@ -150,7 +156,10 @@ export function ChatContainer() {
                 const updated = [...prev];
                 const last = updated[updated.length - 1];
                 if (last.role === "assistant") {
-                  last.content = event.content;
+                  updated[updated.length - 1] = {
+                    ...last,
+                    content: event.content,
+                  };
                 }
                 return updated;
               });
