@@ -1,13 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 import { supabaseAdmin } from "@/lib/supabase";
 import { buildSystemPrompt } from "@/lib/prompts";
+import { generateEmbedding } from "@/lib/embedding";
 
-// Edge Runtimeは一部ライブラリの互換性の問題があるためNode.jsランタイムを使用
-// export const runtime = "edge";
-
-const EMBEDDING_MODEL = "gemini-embedding-001";
 const CHAT_MODEL = "gemini-3.1-flash-lite-preview";
-const EMBEDDING_DIMENSIONS = 768;
 
 type ChatRequest = {
   message: string;
@@ -66,18 +62,7 @@ export async function POST(request: Request) {
 
     // 2. ユーザー質問のEmbedding化
     const startTime = Date.now();
-    const embeddingResult = await genai.models.embedContent({
-      model: EMBEDDING_MODEL,
-      contents: message,
-      config: {
-        taskType: "QUESTION_ANSWERING",
-        outputDimensionality: EMBEDDING_DIMENSIONS,
-      },
-    });
-    const queryEmbedding = embeddingResult.embeddings?.[0]?.values;
-    if (!queryEmbedding) {
-      throw new Error("Embedding生成に失敗しました");
-    }
+    const queryEmbedding = await generateEmbedding(message, "QUESTION_ANSWERING");
 
     // 3. ベクトル検索
     const { data: matchedPages, error: matchError } = await supabaseAdmin.rpc(
