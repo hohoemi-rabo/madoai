@@ -21,4 +21,4 @@
 - [x] カテゴリの付与（ごみ・リサイクル / 子育て）
 - [x] is_active フラグの設定
 - [x] 投入データの確認・動作検証
-- [ ] メタデータのレビュー・修正（summary, keywords, department, phone）※後日AI生成で対応
+- [x] メタデータのレビュー・修正（summary, keywords をGemini AIで一括生成）
