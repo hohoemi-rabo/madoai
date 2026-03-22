@@ -8,7 +8,7 @@ const navItems = [
   { href: "/admin/knowledge", label: "ナレッジ", icon: Database, active: true },
   { href: "/admin/municipalities", label: "自治体", icon: Building2, active: true },
   { href: "/admin/tags", label: "タグ", icon: Tags, active: true },
-  { href: "/admin/analytics", label: "分析", icon: BarChart3, active: false },
+  { href: "/admin/analytics", label: "分析", icon: BarChart3, active: true },
 ];
 
 export function AdminSidebar() {
