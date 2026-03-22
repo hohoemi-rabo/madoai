@@ -16,9 +16,12 @@ export function AdminSidebar() {
 
   return (
     <aside className="w-56 flex-shrink-0 border-r border-[var(--border)] bg-[var(--background)] h-full">
-      <div className="px-4 py-5">
-        <Link href="/admin/knowledge" className="text-sm font-semibold text-white/80">
+      <div className="px-4 py-5 space-y-1">
+        <Link href="/admin/knowledge" className="text-sm font-semibold text-white/80 block">
           MADOAI Admin
+        </Link>
+        <Link href="/" className="text-xs text-white/30 hover:text-white/60 transition-colors">
+          ← トップに戻る
         </Link>
       </div>
       <nav className="px-2 space-y-1">

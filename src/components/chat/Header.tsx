@@ -9,12 +9,20 @@ export function Header() {
           <MessageCircle className="w-5 h-5 text-white/80" />
           <span className="text-sm font-medium text-white/80">MADOAI</span>
         </Link>
-        <Link
-          href="/about"
-          className="text-xs text-white/50 hover:text-white/80 transition-colors"
-        >
-          このサービスについて
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/about"
+            className="text-xs text-white/50 hover:text-white/80 transition-colors"
+          >
+            このサービスについて
+          </Link>
+          <Link
+            href="/admin/knowledge"
+            className="text-xs text-white/30 hover:text-white/60 transition-colors"
+          >
+            管理画面
+          </Link>
+        </div>
       </div>
     </header>
   );

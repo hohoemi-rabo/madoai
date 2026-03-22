@@ -24,9 +24,9 @@ paths:
   - `ChatMessages` — 会話表示（Client）
   - `SuggestChips` — サジェストチップ、DBから取得（Client）
   - `SourceCard` — 参照元・問い合わせカード（Client）
-  - `Header` — ヘッダー + ナビゲーション（Server）
+  - `Header` — ヘッダー（Server）: ホーム / このサービスについて / 管理画面リンク
 - `src/components/admin/` — 管理画面UI
-  - `AdminSidebar` — サイドバーナビゲーション（Client）
+  - `AdminSidebar` — サイドバー（Client）: ナレッジ / 自治体 / タグ / 分析 + トップに戻るリンク
   - `KnowledgeEditForm` — ナレッジ編集フォーム（Client）
   - `MunicipalityForm` — 自治体追加/編集フォーム（Client）
   - `TagForm` — タグ追加/編集フォーム（Client）
