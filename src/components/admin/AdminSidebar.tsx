@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { href: "/admin/knowledge", label: "ナレッジ", icon: Database, active: true },
   { href: "/admin/municipalities", label: "自治体", icon: Building2, active: true },
-  { href: "/admin/tags", label: "タグ", icon: Tags, active: false },
+  { href: "/admin/tags", label: "タグ", icon: Tags, active: true },
   { href: "/admin/analytics", label: "分析", icon: BarChart3, active: false },
 ];
 
