@@ -41,6 +41,8 @@ export function ChatContainer() {
   const [tags, setTags] = useState<Tag[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const sessionIdRef = useRef("");
+  const streamingRef = useRef(false);
+  const messagesRef = useRef<Message[]>([]);
 
   useEffect(() => {
     sessionIdRef.current = getSessionId();
@@ -55,6 +57,7 @@ export function ChatContainer() {
   }, []);
 
   useEffect(() => {
+    messagesRef.current = messages;
     if (messages.length > 0) {
       saveHistory(messages);
     }
@@ -67,16 +70,17 @@ export function ChatContainer() {
   }, [messages, isStreaming]);
 
   const sendMessage = useCallback(async (text: string) => {
-    if (isStreaming) return;
+    if (streamingRef.current) return;
+    streamingRef.current = true;
+    setIsStreaming(true);
 
     const userMessage: Message = { role: "user", content: text };
     const assistantMessage: Message = { role: "assistant", content: "" };
 
     setMessages((prev) => [...prev, userMessage, assistantMessage]);
-    setIsStreaming(true);
 
     try {
-      const history = messages
+      const historyMessages = messagesRef.current
         .slice(-20)
         .map((m) => ({ role: m.role, content: m.content }));
 
@@ -86,7 +90,7 @@ export function ChatContainer() {
         body: JSON.stringify({
           message: text,
           session_id: sessionIdRef.current,
-          history,
+          history: historyMessages,
         }),
       });
 
@@ -105,10 +109,13 @@ export function ChatContainer() {
         if (done) break;
 
         buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split("\n");
-        buffer = lines.pop() || "";
 
-        for (const line of lines) {
+        // SSE events are separated by \n\n
+        const events = buffer.split("\n\n");
+        buffer = events.pop() || "";
+
+        for (const eventBlock of events) {
+          const line = eventBlock.trim();
           if (!line.startsWith("data: ")) continue;
           const jsonStr = line.slice(6);
 
@@ -164,9 +171,10 @@ export function ChatContainer() {
         return updated;
       });
     } finally {
+      streamingRef.current = false;
       setIsStreaming(false);
     }
-  }, [isStreaming, messages]);
+  }, []);
 
   const handleChipSelect = (prompt: string) => {
     setPendingPrompt(prompt);
